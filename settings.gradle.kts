@@ -15,3 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "vWeather"
 include(":app")
+include(":data")
+include(":domain")
+include(":presentation")

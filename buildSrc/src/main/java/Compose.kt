@@ -1,6 +1,8 @@
 object Compose {
     const val composeCompilerVersion = "1.5.1"
 
+    const val composeCompiler = "androidx.compose.compiler:compiler:$composeCompilerVersion"
+
     private const val composeBoMVersion = "2023.08.00"
     const val composeBoM = "androidx.compose:compose-bom:$composeBoMVersion"
 
