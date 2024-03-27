@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdk ProjectConfig.compileSdk
+
+    defaultConfig {
+        minSdk ProjectConfig.minSdk
+        targetSdk ProjectConfig.targetSdk
+        versionCode ProjectConfig.versionCode
+        versionName ProjectConfig.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.getByName("debug")
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // NOTE: In actual production app should never use debug signing config
+            signingConfig signingConfigs.getByName("debug")
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+}
