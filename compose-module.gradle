@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
 
 android {
     compileSdk ProjectConfig.compileSdk
@@ -45,6 +46,10 @@ android {
 }
 
 dependencies {
+    // Dagger-Hilt
+    kapt DaggerHilt.hiltCompiler
+    implementation DaggerHilt.hiltAndroid
+
     // Jetpack Compose
     implementation platform(Compose.composeBoM)
     implementation Compose.composeActivity
