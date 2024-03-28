@@ -46,6 +46,4 @@ dependencies {
 
     // Timber
     implementation Timber.timber
-
-    kapt Moshi.moshiCodegen
 }
