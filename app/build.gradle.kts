@@ -67,8 +67,8 @@ dependencies {
     implementation(AndroidX.lifecycleViewModel)
 
     // Jetpack Compose
-    implementation(Compose.composeActivity)
     implementation(platform(Compose.composeBoM))
+    implementation(Compose.composeActivity)
     implementation(Compose.composeUi)
     implementation(Compose.composeGraphics)
     implementation(Compose.composeFoundations)
@@ -76,4 +76,9 @@ dependencies {
     implementation(Compose.composeUiToolingPreview)
     implementation(Compose.composeViewModel)
     debugImplementation(Compose.composeUiTooling)
+
+    // Modules
+    implementation(project(Modules.data))
+    implementation(project(Modules.domain))
+    implementation(project(Modules.presentation))
 }

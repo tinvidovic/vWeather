@@ -45,10 +45,17 @@ android {
 }
 
 dependencies {
-    implementation Compose.composeCompiler
-    implementation Compose.composeUi
-    implementation Compose.composeUiToolingPreview
-    implementation Compose.composeMaterial3
-    implementation Compose.composeViewModel
+    // Jetpack Compose
+    implementation platform(Compose.composeBoM)
     implementation Compose.composeActivity
+    implementation Compose.composeUi
+    implementation Compose.composeGraphics
+    implementation Compose.composeFoundations
+    implementation Compose.composeMaterial3
+    implementation Compose.composeUiToolingPreview
+    implementation Compose.composeViewModel
+    debugImplementation Compose.composeUiTooling
+
+    // Coil
+    implementation Coil.coilCompose
 }

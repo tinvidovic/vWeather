@@ -6,7 +6,7 @@ plugins {
 apply(from = "$rootDir/base-module.gradle")
 
 android {
-    namespace = "com.assignment.vweather"
+    namespace = "com.assignments.vweather.data"
 }
 
 dependencies {
