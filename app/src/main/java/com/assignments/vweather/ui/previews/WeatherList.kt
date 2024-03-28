@@ -2,6 +2,7 @@ package com.assignments.vweather.ui.previews
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.assignments.domain.repository.TemperatureUnits
 import com.assignments.presentation.components.WeatherList
 import com.assignments.presentation.model.UiWeather
 import com.assignments.vweather.ui.theme.VWeatherTheme
@@ -48,6 +49,7 @@ fun WeatherListPreview() {
                 parisWeather,
                 malagaWeather,
             ),
+            units = TemperatureUnits.Metric()
         )
     }
 }
