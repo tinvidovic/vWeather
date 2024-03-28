@@ -27,12 +27,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.assignments.domain.repository.TemperatureUnits
 import com.assignments.presentation.model.UiWeather
 import com.assignments.vweather.presentation.R
 
 @Composable
 fun WeatherCard(
     uiWeather: UiWeather,
+    units: TemperatureUnits,
     modifier: Modifier = Modifier,
     largeStyle: TextStyle = MaterialTheme.typography.displayLarge.copy(
         color = MaterialTheme.colorScheme.onPrimary
@@ -45,6 +47,7 @@ fun WeatherCard(
     ),
 ) {
 
+    val unitCode: String = if (units is TemperatureUnits.Metric) "\u2103" else "\u2109"
     Card(
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(
@@ -102,7 +105,7 @@ fun WeatherCard(
                     ) {
 
                         Text(
-                            text = "${uiWeather.currentTemperature}\u00B0",
+                            text = "${uiWeather.currentTemperature}$unitCode",
                             style = largeStyle,
                             modifier = Modifier.padding(end = 8.dp)
                         )
@@ -117,7 +120,7 @@ fun WeatherCard(
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
                         Text(
-                            text = "${uiWeather.maxTemperature}\u00B0 / ${uiWeather.minTemperature}\u00B0 Feels like: ${uiWeather.subjectiveTemperature}\u00B0",
+                            text = "${uiWeather.maxTemperature}$unitCode / ${uiWeather.minTemperature}$unitCode",
                             style = smallStyle,
                         )
                     }

@@ -9,7 +9,6 @@ import com.assignments.domain.repository.TemperatureUnits
 import com.assignments.domain.use_case.GetWeatherForCitiesUseCase
 import com.assignments.presentation.mapper.toUiWeather
 import com.assignments.presentation.weather.WeatherViewModel.Constants.cityNames
-import com.assignments.presentation.weather.WeatherViewModel.Constants.units
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,11 +23,33 @@ class WeatherViewModel @Inject constructor(
 
     init {
 
-        loadWeather(cityNames = cityNames)
+        loadWeather(
+            cityNames = cityNames,
+            units = getTemperatureUnits()
+        )
+    }
+
+    fun onEvent(event: WeatherEvent) {
+
+        when (event) {
+            is WeatherEvent.OnUnitCheckedChanged -> {
+                state = state.copy(
+                    unitSwitchChecked = state.unitSwitchChecked.not(),
+                    // Reset the list and fetch, this serves as a make-shift refresh
+                    uiWeatherList = emptyList()
+                )
+
+                loadWeather(
+                    cityNames,
+                    getTemperatureUnits()
+                )
+            }
+        }
     }
 
     private fun loadWeather(
-        cityNames: List<String>
+        cityNames: List<String>,
+        units: TemperatureUnits
     ) {
 
         viewModelScope.launch {
@@ -45,6 +66,12 @@ class WeatherViewModel @Inject constructor(
         }
     }
 
+    fun getTemperatureUnits(): TemperatureUnits {
+
+        // NOTE: This would also likely be loaded from some kind of preferences
+        return if (state.unitSwitchChecked) TemperatureUnits.Metric() else return TemperatureUnits.Imperial()
+    }
+
     private object Constants {
 
         // NOTE: These would come from a shared preferences in a real app, but since there
@@ -57,7 +84,5 @@ class WeatherViewModel @Inject constructor(
             "New York",
             "Berlin",
         )
-
-        val units = TemperatureUnits.Metric()
     }
 }

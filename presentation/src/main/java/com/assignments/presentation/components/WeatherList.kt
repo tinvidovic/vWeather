@@ -10,11 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.assignments.domain.repository.TemperatureUnits
 import com.assignments.presentation.model.UiWeather
 
 @Composable
 fun WeatherList(
     uiWeatherList: List<UiWeather>,
+    units: TemperatureUnits,
     modifier: Modifier = Modifier,
     largeStyle: TextStyle = MaterialTheme.typography.displayLarge.copy(
         color = MaterialTheme.colorScheme.onPrimary
@@ -39,6 +41,7 @@ fun WeatherList(
                 largeStyle = largeStyle,
                 mediumStyle = mediumStyle,
                 smallStyle = smallStyle,
+                units = units,
                 modifier = Modifier
                     .fillMaxWidth()
             )

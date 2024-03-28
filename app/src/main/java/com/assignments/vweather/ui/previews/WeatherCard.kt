@@ -2,6 +2,7 @@ package com.assignments.vweather.ui.previews
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.assignments.domain.repository.TemperatureUnits
 import com.assignments.presentation.components.WeatherCard
 import com.assignments.presentation.model.UiWeather
 import com.assignments.vweather.ui.theme.VWeatherTheme
@@ -22,7 +23,8 @@ fun WeatherCardPreview() {
     VWeatherTheme {
 
         WeatherCard(
-            uiWeather = londonWeather
+            uiWeather = londonWeather,
+            units = TemperatureUnits.Metric()
             //modifier = Modifier.fillMaxWidth()
         )
     }
