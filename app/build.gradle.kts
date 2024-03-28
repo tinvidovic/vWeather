@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -66,6 +67,13 @@ dependencies {
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.lifecycleViewModel)
 
+    // Dagger-Hilt
+    implementation(DaggerHilt.hiltAndroid)
+    kapt(DaggerHilt.hiltCompiler)
+
+    // Timber
+    implementation(Timber.timber)
+
     // Jetpack Compose
     implementation(platform(Compose.composeBoM))
     implementation(Compose.composeActivity)
@@ -81,4 +89,5 @@ dependencies {
     implementation(project(Modules.data))
     implementation(project(Modules.domain))
     implementation(project(Modules.presentation))
+
 }
