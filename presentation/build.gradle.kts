@@ -6,7 +6,7 @@ plugins {
 apply(from = "$rootDir/compose-module.gradle")
 
 android {
-    namespace = "com.assignment.vweather"
+    namespace = "com.assignments.vweather.presentation"
 }
 
 dependencies {
