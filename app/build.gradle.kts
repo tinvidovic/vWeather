@@ -90,4 +90,8 @@ dependencies {
     implementation(project(Modules.domain))
     implementation(project(Modules.presentation))
 
+    // Moshi
+    implementation(Moshi.moshi)
+    kapt(Moshi.moshiCodegen)
+
 }

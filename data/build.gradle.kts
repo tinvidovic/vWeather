@@ -1,7 +1,6 @@
 plugins {
     `android-library`
     `kotlin-android`
-    `kotlin-kapt`
 }
 
 apply(from = "$rootDir/base-module.gradle")

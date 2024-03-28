@@ -49,9 +49,11 @@ dependencies {
     // Dagger-Hilt
     kapt DaggerHilt.hiltCompiler
     implementation DaggerHilt.hiltAndroid
+    implementation DaggerHilt.hiltNavigationCompose
 
     // Jetpack Compose
     implementation platform(Compose.composeBoM)
+    implementation Compose.composeCompiler
     implementation Compose.composeActivity
     implementation Compose.composeUi
     implementation Compose.composeGraphics

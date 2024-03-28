@@ -1,19 +1,16 @@
 package com.assignments.vweather.ui.previews
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.assignments.presentation.components.WeatherList
-import com.assignments.presentation.model.Weather
+import com.assignments.presentation.model.UiWeather
 import com.assignments.vweather.ui.theme.VWeatherTheme
 
 @Preview
 @Composable
 fun WeatherListPreview() {
 
-    val londonWeather = Weather(
+    val londonWeather = UiWeather(
         cityName = "London",
         currentTemperature = 3,
         name = "Rain",
@@ -23,7 +20,7 @@ fun WeatherListPreview() {
         iconUrl = null,
     )
 
-    val parisWeather = Weather(
+    val parisWeather = UiWeather(
         cityName = "Paris",
         currentTemperature = 6,
         name = "Cloudy",
@@ -33,8 +30,8 @@ fun WeatherListPreview() {
         iconUrl = null,
     )
 
-    val malagaWeather = Weather(
-        cityName = "Malaga",
+    val malagaWeather = UiWeather(
+        cityName = "Mountain View",
         currentTemperature = 24,
         name = "Rain",
         minTemperature = 16,
@@ -46,7 +43,7 @@ fun WeatherListPreview() {
     VWeatherTheme {
 
         WeatherList(
-            weatherList = listOf(
+            uiWeatherList = listOf(
                 londonWeather,
                 parisWeather,
                 malagaWeather,

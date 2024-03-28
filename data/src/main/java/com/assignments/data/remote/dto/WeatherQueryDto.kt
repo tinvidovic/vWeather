@@ -10,5 +10,6 @@ data class WeatherQueryDto(
     @field:Json(name = "weather")
     val weatherList: List<Weather>,
     val main: Main,
-    val visibility: Int
+    val visibility: Int,
+    val name: String,
 )

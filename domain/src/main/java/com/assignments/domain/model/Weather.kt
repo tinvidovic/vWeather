@@ -12,5 +12,6 @@ data class Weather(
     val humidity: Int?,
     val minTemperature: Float?,
     val maxTemperature: Float?,
-    val visibility: Int?
+    val visibility: Int?,
+    val name: String
 )

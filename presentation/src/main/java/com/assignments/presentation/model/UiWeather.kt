@@ -1,6 +1,6 @@
 package com.assignments.presentation.model
 
-data class Weather(
+data class UiWeather(
     val cityName: String,
     val currentTemperature: Int,
     val name: String,
