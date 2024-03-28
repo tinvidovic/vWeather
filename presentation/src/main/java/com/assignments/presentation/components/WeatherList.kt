@@ -10,11 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import com.assignments.presentation.model.Weather
+import com.assignments.presentation.model.UiWeather
 
 @Composable
 fun WeatherList(
-    weatherList: List<Weather>,
+    uiWeatherList: List<UiWeather>,
     modifier: Modifier = Modifier,
     largeStyle: TextStyle = MaterialTheme.typography.displayLarge.copy(
         color = MaterialTheme.colorScheme.onPrimary
@@ -32,10 +32,10 @@ fun WeatherList(
         contentPadding = PaddingValues(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        items(weatherList) { weather ->
+        items(uiWeatherList) { weather ->
 
             WeatherCard(
-                weather = weather,
+                uiWeather = weather,
                 largeStyle = largeStyle,
                 mediumStyle = mediumStyle,
                 smallStyle = smallStyle,

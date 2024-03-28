@@ -1,6 +1,7 @@
 package com.assignments.data.remote
 
 import com.assignments.data.remote.dto.WeatherQueryDto
+import com.assignments.domain.repository.TemperatureUnits
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,6 +13,7 @@ interface OpenWeatherApi {
         // NOTE: Should normally store these in local properties and integrate with something like
         // Github secrets, but since it is a free plan and for the sake of simplicity they are here
         @Query("appId") appID: String = "1ee46290d45ab833a434afa7f074e092",
+        @Query("units") units: String
     ): WeatherQueryDto
 
     companion object {

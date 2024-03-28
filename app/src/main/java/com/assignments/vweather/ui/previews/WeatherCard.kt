@@ -3,14 +3,14 @@ package com.assignments.vweather.ui.previews
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.assignments.presentation.components.WeatherCard
-import com.assignments.presentation.model.Weather
+import com.assignments.presentation.model.UiWeather
 import com.assignments.vweather.ui.theme.VWeatherTheme
 
 @Preview
 @Composable
 fun WeatherCardPreview() {
 
-    val londonWeather = Weather(
+    val londonWeather = UiWeather(
         cityName = "London",
         currentTemperature = 3,
         name = "Rain",
@@ -22,7 +22,7 @@ fun WeatherCardPreview() {
     VWeatherTheme {
 
         WeatherCard(
-            weather = londonWeather
+            uiWeather = londonWeather
             //modifier = Modifier.fillMaxWidth()
         )
     }

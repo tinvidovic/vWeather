@@ -11,4 +11,7 @@ android {
 
 dependencies {
     implementation(project(Modules.domain))
+
+    // Dagger-Hilt
+    implementation(DaggerHilt.hiltNavigationCompose)
 }

@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
 import com.assignments.domain.repository.WeatherRepository
+import com.assignments.presentation.weather.WeatherScreen
 import com.assignments.vweather.ui.theme.VWeatherTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -26,6 +27,8 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
+
+                    WeatherScreen()
                 }
             }
         }

@@ -19,6 +19,7 @@ fun WeatherQueryDto.toWeather(): Weather {
         humidity = main.humidity,
         minTemperature = main.minTemperature,
         maxTemperature = main.maxTemperature,
-        visibility = visibility
+        visibility = visibility,
+        name = name
     )
 }

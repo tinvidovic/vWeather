@@ -6,9 +6,11 @@ interface WeatherRepository {
 
     suspend fun getWeatherForCity(
         cityName: String,
+        units: TemperatureUnits
     ): Result<Weather>
 
     suspend fun getWeatherForCities(
-        cityNames: List<String>
+        cityNames: List<String>,
+        units: TemperatureUnits
     ): Result<List<Weather>>
 }

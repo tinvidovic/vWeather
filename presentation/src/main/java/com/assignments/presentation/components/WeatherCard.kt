@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
@@ -29,12 +27,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.assignments.presentation.model.Weather
+import com.assignments.presentation.model.UiWeather
 import com.assignments.vweather.presentation.R
 
 @Composable
 fun WeatherCard(
-    weather: Weather,
+    uiWeather: UiWeather,
     modifier: Modifier = Modifier,
     largeStyle: TextStyle = MaterialTheme.typography.displayLarge.copy(
         color = MaterialTheme.colorScheme.onPrimary
@@ -77,36 +75,40 @@ fun WeatherCard(
                     )
             ) {
 
-                Column{
+                Column(
+                    modifier = Modifier
+                        .weight(1F)
+                ){
 
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
 
                         Text(
-                            text = weather.cityName, style = largeStyle, modifier = Modifier.padding(end = 8.dp)
+                            text = uiWeather.cityName, style = largeStyle, modifier = Modifier.padding(end = 8.dp)
                         )
 
                         Icon(
                             imageVector = Icons.Default.LocationOn,
                             contentDescription = stringResource(id = R.string.location_cd),
                             tint = MaterialTheme.colorScheme.onPrimary,
-                            modifier = Modifier.size(32.dp),
+                            modifier = Modifier.size(24.dp),
                         )
                     }
 
                     Row(
-                        horizontalArrangement = Arrangement.SpaceEvenly
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        verticalAlignment = Alignment.Bottom
                     ) {
 
                         Text(
-                            text = "${weather.currentTemperature}\u00B0",
+                            text = "${uiWeather.currentTemperature}\u00B0",
                             style = largeStyle,
                             modifier = Modifier.padding(end = 8.dp)
                         )
 
                         Text(
-                            text = weather.name,
+                            text = uiWeather.name,
                             style = mediumStyle,
                         )
                     }
@@ -115,7 +117,7 @@ fun WeatherCard(
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
                         Text(
-                            text = "${weather.maxTemperature}\u00B0 / ${weather.minTemperature}\u00B0 Feels like: ${weather.subjectiveTemperature}\u00B0",
+                            text = "${uiWeather.maxTemperature}\u00B0 / ${uiWeather.minTemperature}\u00B0 Feels like: ${uiWeather.subjectiveTemperature}\u00B0",
                             style = smallStyle,
                         )
                     }
@@ -123,7 +125,7 @@ fun WeatherCard(
 
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
-                        .data(weather.iconUrl)
+                        .data(uiWeather.iconUrl)
                         .crossfade(true)
                         .build(),
                     placeholder = painterResource(R.drawable.ic_default_weather),
