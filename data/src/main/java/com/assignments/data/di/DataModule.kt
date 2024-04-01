@@ -1,5 +1,8 @@
 package com.assignments.data.di
 
+import android.app.Application
+import androidx.room.Room
+import com.assignments.data.local.WeatherDatabase
 import com.assignments.data.remote.OpenWeatherApi
 import com.assignments.domain.repository.WeatherRepository
 import com.squareup.moshi.Moshi
@@ -51,11 +54,23 @@ object DataModule {
     @Provides
     @Singleton
     fun provideWeatherRepository(
-        api: OpenWeatherApi
+        api: OpenWeatherApi,
+        db: WeatherDatabase
     ): WeatherRepository {
 
         return com.assignments.data.repository.WeatherRepository(
-            api = api
+            api = api,
+            dao = db.dao
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideWeatherDatabase(app: Application): WeatherDatabase {
+        return Room.databaseBuilder(
+            app,
+            WeatherDatabase::class.java,
+            "weather_db"
+        ).build()
     }
 }

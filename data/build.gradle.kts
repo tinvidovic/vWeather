@@ -20,4 +20,9 @@ dependencies {
 
     // Moshi
     implementation(Moshi.moshi)
+
+    // Room
+    "kapt"(Room.roomCompiler)
+    implementation(Room.roomKtx)
+    implementation(Room.roomRuntime)
 }

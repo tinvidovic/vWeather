@@ -1,16 +1,13 @@
 package com.assignments.domain.repository
 
 import com.assignments.domain.model.Weather
+import com.assignments.domain.repository.util.Resource
+import kotlinx.coroutines.flow.Flow
 
 interface WeatherRepository {
-
-    suspend fun getWeatherForCity(
-        cityName: String,
-        units: TemperatureUnits
-    ): Result<Weather>
 
     suspend fun getWeatherForCities(
         cityNames: List<String>,
         units: TemperatureUnits
-    ): Result<List<Weather>>
+    ): Resource<Flow<List<Weather>>>
 }

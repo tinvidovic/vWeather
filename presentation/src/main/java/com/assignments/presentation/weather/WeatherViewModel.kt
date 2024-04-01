@@ -6,20 +6,29 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.assignments.domain.repository.TemperatureUnits
+import com.assignments.domain.repository.util.Resource
 import com.assignments.domain.use_case.GetWeatherForCitiesUseCase
 import com.assignments.presentation.mapper.toUiWeather
+import com.assignments.presentation.util.UIEvent
 import com.assignments.presentation.weather.WeatherViewModel.Constants.cityNames
+import com.assignments.vweather.presentation.R
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val getWeatherForCitiesUseCase: GetWeatherForCitiesUseCase
-): ViewModel() {
+) : ViewModel() {
 
     var state by mutableStateOf(WeatherState())
         private set
+
+    private val _uiEvent = Channel<UIEvent>()
+    val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
 
@@ -65,21 +74,32 @@ class WeatherViewModel @Inject constructor(
     ) {
 
         viewModelScope.launch {
-            getWeatherForCitiesUseCase(cityNames, units)
-                .onSuccess {weatherList ->
-                    state = state.copy(
-                        uiWeatherList = weatherList.map {
-                            it.toUiWeather()
-                        },
-                        isRefreshing = false
-                    )
-                }.onFailure {
-                    state = state.copy(
-                        isRefreshing = false
-                    )
+            val result = getWeatherForCitiesUseCase(cityNames, units)
 
-                    it.printStackTrace()
+            state = state.copy(
+                isRefreshing = false
+            )
+
+            when (result) {
+                is Resource.Error -> {
+                    _uiEvent.send(
+                        UIEvent.ShowSnackbar(R.string.loading_error)
+                    )
                 }
+
+                is Resource.Success -> {
+                    println("Resource.Success")
+                }
+            }
+
+            result.data?.collectLatest { weathers ->
+
+                state = state.copy(
+                    uiWeatherList = weathers.map {
+                        it.toUiWeather()
+                    },
+                )
+            }
         }
     }
 
