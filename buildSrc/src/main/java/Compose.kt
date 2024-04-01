@@ -3,7 +3,7 @@ object Compose {
 
     const val composeCompiler = "androidx.compose.compiler:compiler:$composeCompilerVersion"
 
-    private const val composeBoMVersion = "2023.08.00"
+    private const val composeBoMVersion = "2024.02.01"
     const val composeBoM = "androidx.compose:compose-bom:$composeBoMVersion"
 
     const val composeUi = "androidx.compose.ui:ui"

@@ -44,6 +44,18 @@ class WeatherViewModel @Inject constructor(
                     getTemperatureUnits()
                 )
             }
+
+            WeatherEvent.OnWeatherListRefresh -> {
+
+                state = state.copy(
+                    isRefreshing = true
+                )
+
+                loadWeather(
+                    cityNames,
+                    getTemperatureUnits()
+                )
+            }
         }
     }
 
@@ -58,9 +70,14 @@ class WeatherViewModel @Inject constructor(
                     state = state.copy(
                         uiWeatherList = weatherList.map {
                             it.toUiWeather()
-                        }
+                        },
+                        isRefreshing = false
                     )
                 }.onFailure {
+                    state = state.copy(
+                        isRefreshing = false
+                    )
+
                     it.printStackTrace()
                 }
         }
