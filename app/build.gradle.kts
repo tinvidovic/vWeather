@@ -85,13 +85,13 @@ dependencies {
     implementation(Compose.composeViewModel)
     debugImplementation(Compose.composeUiTooling)
 
+    // Moshi
+    implementation(Moshi.moshi)
+    kapt(Moshi.moshiCodegen)
+
     // Modules
     implementation(project(Modules.data))
     implementation(project(Modules.domain))
     implementation(project(Modules.presentation))
-
-    // Moshi
-    implementation(Moshi.moshi)
-    kapt(Moshi.moshiCodegen)
 
 }

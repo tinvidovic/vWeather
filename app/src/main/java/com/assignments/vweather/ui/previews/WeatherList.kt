@@ -49,7 +49,9 @@ fun WeatherListPreview() {
                 parisWeather,
                 malagaWeather,
             ),
-            units = TemperatureUnits.Metric()
+            units = TemperatureUnits.Metric(),
+            isRefreshing = false,
+            onRefresh = {}
         )
     }
 }

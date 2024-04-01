@@ -23,16 +23,21 @@ fun WeatherScreen(
             .fillMaxSize()
     ) {
 
+        WeatherList(
+            uiWeatherList = state.uiWeatherList,
+            units = viewModel.getTemperatureUnits(),
+            isRefreshing = state.isRefreshing,
+            onRefresh = { viewModel.onEvent(WeatherEvent.OnWeatherListRefresh) },
+            modifier = Modifier
+                .weight(1F, false)
+        )
+
         UnitSwitch(
             text = R.string.unit_switch_label,
             checked = state.unitSwitchChecked,
             onCheckedChanged = {
                 viewModel.onEvent(WeatherEvent.OnUnitCheckedChanged(it))
-            })
-
-        WeatherList(
-            uiWeatherList = state.uiWeatherList,
-            units = viewModel.getTemperatureUnits()
+            },
         )
     }
 }
