@@ -3,4 +3,6 @@
     <string name="unit_switch_label">Units</string>
 
     <string name="location_cd">Current location.</string>
+
+    <string name="loading_error">Error fetching data.</string>
 </resources>
