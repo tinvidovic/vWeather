@@ -4,6 +4,7 @@ import com.assignments.data.local.WeatherDao
 import com.assignments.data.mapper.toWeather
 import com.assignments.data.mapper.toWeatherEntity
 import com.assignments.data.remote.OpenWeatherApi
+import com.assignments.data.remote.dto.WeatherQueryDto
 import com.assignments.domain.model.Weather
 import com.assignments.domain.repository.TemperatureUnits
 import com.assignments.domain.repository.WeatherRepository
@@ -20,7 +21,9 @@ class WeatherRepository(
         cityNames: List<String>
     ): Resource<Flow<List<Weather>>> {
 
-        var requestFailed = true
+        var requestFailed: Boolean
+
+        val weatherList: MutableList<WeatherQueryDto> = mutableListOf()
 
         try {
 
@@ -29,7 +32,7 @@ class WeatherRepository(
                     query = cityName
                 )
 
-                dao.insertWeather(weatherQueryDto.toWeatherEntity())
+                weatherList.add(weatherQueryDto)
             }
 
             requestFailed = false
@@ -40,6 +43,7 @@ class WeatherRepository(
         }
 
         return if (requestFailed) {
+            // Request failed, expose latest cached data
             Resource.Error(
                 data = dao.getWeathers().map { weatherEntities ->
                     weatherEntities.map {
@@ -48,6 +52,12 @@ class WeatherRepository(
                 }
             )
         } else {
+            // Request succeeded, refresh cache
+            dao.deleteWeathers()
+
+            for (weatherQueryDto in weatherList)
+                dao.insertWeather(weatherQueryDto.toWeatherEntity())
+
             Resource.Success(
                 data = dao.getWeathers().map { weatherEntities ->
                     weatherEntities.map {
