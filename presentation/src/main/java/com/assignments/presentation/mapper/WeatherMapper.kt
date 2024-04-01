@@ -13,6 +13,7 @@ fun Weather.toUiWeather(): UiWeather {
         minTemperature = minTemperature?.roundToInt() ?: 0,
         maxTemperature = maxTemperature?.roundToInt() ?: 0,
         subjectiveTemperature = this.temperature?.roundToInt() ?: 0,
+        // @see https://openweathermap.org/weather-conditions
         iconUrl = "https://openweathermap.org/img/wn/$icon@2x.png"
     )
 }

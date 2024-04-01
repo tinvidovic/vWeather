@@ -3,6 +3,10 @@ package com.assignments.data.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * A DB entity representing a city weather
+ * @see README
+ */
 @Entity(
     tableName = "weathers"
 )

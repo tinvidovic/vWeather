@@ -7,6 +7,10 @@ import retrofit2.http.Query
 
 interface OpenWeatherApi {
 
+    /**
+     * Fetches a [WeatherQueryDto] with the provided settings
+     * @param units The [TemperatureUnits], expected in the response for temperature values
+     */
     @GET("data/2.5/weather")
     suspend fun getWeather(
         @Query("q") query: String,

@@ -71,14 +71,14 @@ fun WeatherList(
             }
         }
 
-        if(pullToRefreshState.isRefreshing) {
+        if (pullToRefreshState.isRefreshing) {
             LaunchedEffect(true) {
                 onRefresh()
             }
         }
 
         LaunchedEffect(isRefreshing) {
-            if(isRefreshing) {
+            if (isRefreshing) {
                 pullToRefreshState.startRefresh()
             } else {
                 pullToRefreshState.endRefresh()

@@ -9,6 +9,6 @@ import com.assignments.data.local.entity.WeatherEntity
     version = 1,
     exportSchema = false
 )
-abstract class WeatherDatabase: RoomDatabase() {
+abstract class WeatherDatabase : RoomDatabase() {
     abstract val dao: WeatherDao
 }

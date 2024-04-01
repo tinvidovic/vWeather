@@ -93,6 +93,9 @@ class WeatherViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Returns the [TemperatureUnits] based on the state of the switch
+     */
     fun getTemperatureUnits(): TemperatureUnits {
 
         // NOTE: This would also likely be loaded from some kind of preferences

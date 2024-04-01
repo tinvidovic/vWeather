@@ -1,7 +1,6 @@
 package com.assignments.domain.use_case
 
 import com.assignments.domain.model.Weather
-import com.assignments.domain.repository.TemperatureUnits
 import com.assignments.domain.repository.WeatherRepository
 import com.assignments.domain.repository.util.Resource
 import kotlinx.coroutines.flow.Flow

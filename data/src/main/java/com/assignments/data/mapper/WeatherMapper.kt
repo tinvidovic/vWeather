@@ -3,6 +3,7 @@ package com.assignments.data.mapper
 import com.assignments.data.local.entity.WeatherEntity
 import com.assignments.data.remote.dto.WeatherQueryDto
 import com.assignments.domain.model.Weather
+
 fun WeatherQueryDto.toWeatherEntity(): WeatherEntity {
 
     val firstWeather = weatherList.first()
