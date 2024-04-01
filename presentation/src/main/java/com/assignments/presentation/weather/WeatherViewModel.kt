@@ -86,7 +86,7 @@ class WeatherViewModel @Inject constructor(
     fun getTemperatureUnits(): TemperatureUnits {
 
         // NOTE: This would also likely be loaded from some kind of preferences
-        return if (state.unitSwitchChecked) TemperatureUnits.Metric() else return TemperatureUnits.Imperial()
+        return if (state.unitSwitchChecked) TemperatureUnits.Imperial() else return TemperatureUnits.Metric()
     }
 
     private object Constants {

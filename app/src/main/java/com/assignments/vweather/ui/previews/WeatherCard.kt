@@ -1,6 +1,8 @@
 package com.assignments.vweather.ui.previews
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.assignments.domain.repository.TemperatureUnits
 import com.assignments.presentation.components.WeatherCard
@@ -24,8 +26,8 @@ fun WeatherCardPreview() {
 
         WeatherCard(
             uiWeather = londonWeather,
-            units = TemperatureUnits.Metric()
-            //modifier = Modifier.fillMaxWidth()
+            units = TemperatureUnits.Metric(),
+            modifier = Modifier.fillMaxWidth()
         )
     }
 }

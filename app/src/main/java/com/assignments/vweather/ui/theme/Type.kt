@@ -11,15 +11,15 @@ val Typography = Typography(
     displayLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 32.sp,
-        lineHeight = 32.sp,
+        fontSize = 28.sp,
+        lineHeight = 28.sp,
         letterSpacing = 0.5.sp
     ),
     displayMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Light,
-        fontSize = 24.sp,
-        lineHeight = 24.sp,
+        fontSize = 22.sp,
+        lineHeight = 22.sp,
         letterSpacing = 0.5.sp
     ),
     displaySmall = TextStyle(
