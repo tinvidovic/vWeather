@@ -21,7 +21,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
-    private val getWeatherForCitiesUseCase: GetWeatherForCitiesUseCase
+    private val getWeatherForCitiesUseCase: GetWeatherForCitiesUseCase,
 ) : ViewModel() {
 
     var state by mutableStateOf(WeatherState())
@@ -33,8 +33,7 @@ class WeatherViewModel @Inject constructor(
     init {
 
         loadWeather(
-            cityNames = cityNames,
-            units = getTemperatureUnits()
+            cityNames = cityNames
         )
     }
 
@@ -44,13 +43,6 @@ class WeatherViewModel @Inject constructor(
             is WeatherEvent.OnUnitCheckedChanged -> {
                 state = state.copy(
                     unitSwitchChecked = state.unitSwitchChecked.not(),
-                    // Reset the list and fetch, this serves as a make-shift refresh
-                    uiWeatherList = emptyList()
-                )
-
-                loadWeather(
-                    cityNames,
-                    getTemperatureUnits()
                 )
             }
 
@@ -61,8 +53,7 @@ class WeatherViewModel @Inject constructor(
                 )
 
                 loadWeather(
-                    cityNames,
-                    getTemperatureUnits()
+                    cityNames
                 )
             }
         }
@@ -70,11 +61,10 @@ class WeatherViewModel @Inject constructor(
 
     private fun loadWeather(
         cityNames: List<String>,
-        units: TemperatureUnits
     ) {
 
         viewModelScope.launch {
-            val result = getWeatherForCitiesUseCase(cityNames, units)
+            val result = getWeatherForCitiesUseCase(cityNames)
 
             state = state.copy(
                 isRefreshing = false

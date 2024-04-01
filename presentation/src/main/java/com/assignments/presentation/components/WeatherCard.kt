@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.assignments.domain.repository.TemperatureUnits
+import com.assignments.domain.util.TemperatureUtils.getMetricTemperatureIn
 import com.assignments.presentation.model.UiWeather
 import com.assignments.vweather.presentation.R
 
@@ -104,95 +105,18 @@ fun WeatherCard(
                 )
 
                 Text(
-                    text = "${uiWeather.currentTemperature}$unitCode",
+                    text = "${getMetricTemperatureIn(uiWeather.currentTemperature, units)}$unitCode",
                     style = largeStyle,
                     modifier = Modifier.padding(end = 8.dp),
                     textAlign = TextAlign.Center
                 )
 
                 Text(
-                    text = "${uiWeather.maxTemperature}$unitCode / ${uiWeather.minTemperature}$unitCode",
+                    text = "${getMetricTemperatureIn(uiWeather.minTemperature, units)}$unitCode / ${getMetricTemperatureIn(uiWeather.maxTemperature, units)}$unitCode",
                     style = smallStyle,
                     textAlign = TextAlign.Center
                 )
             }
-
-            /*Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceAround,
-                modifier = modifier
-                    .padding(
-                        horizontal = 8.dp,
-                        vertical = 8.dp
-                    )
-            ) {
-
-                Column(
-                    modifier = Modifier
-                        .weight(1F)
-                ){
-
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-
-                        Text(
-                            text = uiWeather.cityName, style = largeStyle, modifier = Modifier.padding(end = 8.dp)
-                        )
-
-                        Icon(
-                            imageVector = Icons.Default.LocationOn,
-                            contentDescription = stringResource(id = R.string.location_cd),
-                            tint = MaterialTheme.colorScheme.onPrimary,
-                            modifier = Modifier.size(24.dp),
-                        )
-                    }
-
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceEvenly,
-                        verticalAlignment = Alignment.Bottom
-                    ) {
-
-                        Text(
-                            text = "${uiWeather.currentTemperature}$unitCode",
-                            style = largeStyle,
-                            modifier = Modifier.padding(end = 8.dp)
-                        )
-
-                        Text(
-                            text = uiWeather.name,
-                            style = mediumStyle,
-                        )
-                    }
-
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                        Text(
-                            text = "${uiWeather.maxTemperature}$unitCode / ${uiWeather.minTemperature}$unitCode",
-                            style = smallStyle,
-                        )
-                    }
-                }
-
-                AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(uiWeather.iconUrl)
-                        .crossfade(true)
-                        .build(),
-                    placeholder = painterResource(R.drawable.ic_default_weather),
-                    error = painterResource(id = R.drawable.ic_default_weather),
-                    fallback = painterResource(id = R.drawable.ic_default_weather),
-                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimary),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .padding(
-                            start = 16.dp
-                        )
-                        .size(68.dp)
-
-                )
-            }*/
 
         }
     }

@@ -1,5 +1,7 @@
 package com.assignments.presentation.model
 
+import com.assignments.domain.repository.TemperatureUnits
+
 data class UiWeather(
     val cityName: String,
     val currentTemperature: Int,

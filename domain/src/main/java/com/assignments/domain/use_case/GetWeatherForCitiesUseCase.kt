@@ -16,11 +16,9 @@ class GetWeatherForCitiesUseCase(
      */
     suspend operator fun invoke(
         cityNames: List<String>,
-        units: TemperatureUnits,
     ): Resource<Flow<List<Weather>>> {
         return weatherRepository.getWeatherForCities(
             cityNames = cityNames,
-            units
         )
     }
 }

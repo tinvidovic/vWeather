@@ -13,7 +13,7 @@ interface OpenWeatherApi {
         // NOTE: Should normally store these in local properties and integrate with something like
         // Github secrets, but since it is a free plan and for the sake of simplicity they are here
         @Query("appId") appID: String = "1ee46290d45ab833a434afa7f074e092",
-        @Query("units") units: String
+        @Query("units") units: String = TemperatureUnits.Metric().code
     ): WeatherQueryDto
 
     companion object {

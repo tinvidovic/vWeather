@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 interface WeatherRepository {
 
     suspend fun getWeatherForCities(
-        cityNames: List<String>,
-        units: TemperatureUnits
+        cityNames: List<String>
     ): Resource<Flow<List<Weather>>>
 }

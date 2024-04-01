@@ -17,8 +17,7 @@ class WeatherRepository(
 ): WeatherRepository {
 
     override suspend fun getWeatherForCities(
-        cityNames: List<String>,
-        units: TemperatureUnits
+        cityNames: List<String>
     ): Resource<Flow<List<Weather>>> {
 
         var requestFailed = true
@@ -27,8 +26,7 @@ class WeatherRepository(
 
             for (cityName in cityNames) {
                 val weatherQueryDto = api.getWeather(
-                    query = cityName,
-                    units = units.code
+                    query = cityName
                 )
 
                 dao.insertWeather(weatherQueryDto.toWeatherEntity())
