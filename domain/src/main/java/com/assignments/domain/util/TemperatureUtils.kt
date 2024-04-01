@@ -16,7 +16,7 @@ object TemperatureUtils {
         return if (units is TemperatureUnits.Metric) {
             temperature
         } else {
-            (temperature * 9F/5F + 32).roundToInt()
+            (temperature * 9F / 5F + 32).roundToInt()
         }
     }
 }

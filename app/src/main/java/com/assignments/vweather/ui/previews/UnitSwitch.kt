@@ -12,7 +12,7 @@ import com.assignments.vweather.ui.theme.VWeatherTheme
 fun UnitSwitchPreview() {
 
     VWeatherTheme {
-        Surface{
+        Surface {
             UnitSwitch(text = R.string.unit_switch_label, checked = true, onCheckedChanged = {})
         }
     }

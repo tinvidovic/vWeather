@@ -6,7 +6,6 @@ import com.assignments.data.mapper.toWeatherEntity
 import com.assignments.data.remote.OpenWeatherApi
 import com.assignments.data.remote.dto.WeatherQueryDto
 import com.assignments.domain.model.Weather
-import com.assignments.domain.repository.TemperatureUnits
 import com.assignments.domain.repository.WeatherRepository
 import com.assignments.domain.repository.util.Resource
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +14,7 @@ import kotlinx.coroutines.flow.map
 class WeatherRepository(
     private val api: OpenWeatherApi,
     private val dao: WeatherDao,
-): WeatherRepository {
+) : WeatherRepository {
 
     override suspend fun getWeatherForCities(
         cityNames: List<String>

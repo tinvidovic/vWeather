@@ -5,5 +5,5 @@ import androidx.annotation.StringRes
 sealed class UIEvent {
     data class ShowSnackbar(
         @StringRes val messageId: Int
-    ): UIEvent()
+    ) : UIEvent()
 }
