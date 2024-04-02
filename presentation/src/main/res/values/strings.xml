@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unit_switch_label">Units</string>
+
+    <string name="location_cd">Current location.</string>
+
+    <string name="loading_error">Error fetching data.</string>
+</resources>

@@ -1,0 +1,86 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+
+android {
+    compileSdk ProjectConfig.compileSdk
+
+    defaultConfig {
+        minSdk ProjectConfig.minSdk
+        targetSdk ProjectConfig.targetSdk
+        versionCode ProjectConfig.versionCode
+        versionName ProjectConfig.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion Compose.composeCompilerVersion
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.getByName("debug")
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // NOTE: In actual production app should never use debug signing config
+            signingConfig signingConfigs.getByName("debug")
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    // Dagger-Hilt
+    kapt DaggerHilt.hiltCompiler
+    implementation DaggerHilt.hiltAndroid
+    implementation DaggerHilt.hiltNavigationCompose
+
+    // Jetpack Compose
+    implementation platform(Compose.composeBoM)
+    implementation Compose.composeCompiler
+    implementation Compose.composeActivity
+    implementation Compose.composeUi
+    implementation Compose.composeGraphics
+    implementation Compose.composeFoundations
+    implementation Compose.composeMaterial3
+    implementation Compose.composeUiToolingPreview
+    implementation Compose.composeViewModel
+    debugImplementation Compose.composeUiTooling
+
+    // Coil
+    implementation Coil.coilCompose
+
+    // Testing
+    testImplementation(Testing.junit4)
+    testImplementation(Testing.junitAndroidExt)
+    testImplementation(Testing.coroutines)
+    testImplementation(Testing.truth)
+    testImplementation(Testing.composeUiTest)
+    testImplementation(Testing.hiltTesting)
+    testImplementation(Testing.testRunner)
+
+    androidTestImplementation(Testing.junit4)
+    androidTestImplementation(Testing.junitAndroidExt)
+    androidTestImplementation(Testing.coroutines)
+    androidTestImplementation(Testing.truth)
+    androidTestImplementation(Testing.composeUiTest)
+    androidTestImplementation(Testing.hiltTesting)
+    androidTestImplementation(Testing.testRunner)
+    kaptAndroidTest(DaggerHilt.hiltCompiler)
+}
