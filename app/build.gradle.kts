@@ -94,4 +94,22 @@ dependencies {
     implementation(project(Modules.domain))
     implementation(project(Modules.presentation))
 
+    // Testing
+    testImplementation(Testing.junit4)
+    testImplementation(Testing.junitAndroidExt)
+    testImplementation(Testing.coroutines)
+    testImplementation(Testing.truth)
+    testImplementation(Testing.composeUiTest)
+    testImplementation(Testing.hiltTesting)
+    testImplementation(Testing.testRunner)
+
+    androidTestImplementation(Testing.junit4)
+    androidTestImplementation(Testing.junitAndroidExt)
+    androidTestImplementation(Testing.coroutines)
+    androidTestImplementation(Testing.truth)
+    androidTestImplementation(Testing.composeUiTest)
+    androidTestImplementation(Testing.hiltTesting)
+    androidTestImplementation(Testing.testRunner)
+    kaptAndroidTest(DaggerHilt.hiltCompiler)
+
 }
