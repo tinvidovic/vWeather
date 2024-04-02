@@ -47,4 +47,15 @@ dependencies {
     // Timber
     implementation Timber.timber
     kapt Moshi.moshiCodegen
+
+    // Testing
+    testImplementation(Testing.junit4)
+    testImplementation(Testing.junitAndroidExt)
+    testImplementation(Testing.truth)
+    testImplementation(Testing.testRunner)
+
+    androidTestImplementation(Testing.junit4)
+    androidTestImplementation(Testing.junitAndroidExt)
+    androidTestImplementation(Testing.truth)
+    androidTestImplementation(Testing.testRunner)
 }
