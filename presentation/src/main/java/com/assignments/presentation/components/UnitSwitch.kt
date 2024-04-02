@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -36,6 +37,11 @@ fun UnitSwitch(
                 .padding(end = 4.dp)
         )
 
-        Switch(checked = checked, onCheckedChange = onCheckedChanged)
+        Switch(
+            checked = checked,
+            onCheckedChange = onCheckedChanged,
+            modifier = Modifier
+                .testTag("unit_switch")
+        )
     }
 }
